@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath Pro - Find Your Perfect Career</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-user-graduate"></i>
+                <h1>CareerPath <span>Pro</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Discover Your Perfect Career Match</h2>
+                    <p>Take our assessment and get personalized career recommendations based on your skills, interests, and personality.</p>
+                    <button id="startAssessment" class="btn-primary">Start Assessment</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Career choices">
+                </div>
+            </section>
+
+            <section id="assessment" class="assessment-section hidden">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                    <div class="step active" data-step="1">1</div>
+                    <div class="step" data-step="2">2</div>
+                    <div class="step" data-step="3">3</div>
+                    <div class="step" data-step="4">4</div>
+                </div>
+
+                <form id="careerForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="16" max="70" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="education">Highest Education Level</label>
+                            <select id="education" name="education" required>
+                                <option value="">Select</option>
+                                <option value="high_school">High School</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-next" data-next="2">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Skills and Interests -->
+                    <div class="form-step" data-step="2">
+                        <h3>Your Skills and Interests</h3>
+                        <div class="form-group">
+                            <label>Select your top skills (select up to 5)</label>
+                            <div class="skills-container">
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="programming">
+                                    <span>Programming</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="design">
+                                    <span>Design</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="writing">
+                                    <span>Writing</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="analysis">
+                                    <span>Data Analysis</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="leadership">
+                                    <span>Leadership</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="communication">
+                                    <span>Communication</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="problem_solving">
+                                    <span>Problem Solving</span>
+                                </label>
+                                <label class="skill-option">
+                                    <input type="checkbox" name="skills" value="creativity">
+                                    <span>Creativity</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>What are you passionate about?</label>
+                            <textarea id="passions" name="passions" rows="3" placeholder="E.g., Technology, Helping others, Art, etc."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-prev" data-prev="1">Previous</button>
+                            <button type="button" class="btn-next" data-next="3">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Personality Traits -->
+                    <div class="form-step" data-step="3">
+                        <h3>Personality Traits</h3>
+                        <p>Rate yourself on the following traits (1 = Not like me, 5 = Very much like me)</p>
+                        
+                        <div class="trait-group">
+                            <label>I enjoy working in teams</label>
+                            <div class="rating">
+                                <input type="radio" name="teamwork" id="teamwork1" value="1">
+                                <label for="teamwork1">1</label>
+                                <input type="radio" name="teamwork" id="teamwork2" value="2">
+                                <label for="teamwork2">2</label>
+                                <input type="radio" name="teamwork" id="teamwork3" value="3" checked>
+                                <label for="teamwork3">3</label>
+                                <input type="radio" name="teamwork" id="teamwork4" value="4">
+                                <label for="teamwork4">4</label>
+                                <input type="radio" name="teamwork" id="teamwork5" value="5">
+                                <label for="teamwork5">5</label>
+                            </div>
+                        </div>
+                        
+                        <div class="trait-group">
+                            <label>I prefer structured environments</label>
+                            <div class="rating">
+                                <input type="radio" name="structure" id="structure1" value="1">
+                                <label for="structure1">1</label>
+                                <input type="radio" name="structure" id="structure2" value="2">
+                                <label for="structure2">2</label>
+                                <input type="radio" name="structure" id="structure3" value="3" checked>
+                                <label for="structure3">3</label>
+                                <input type="radio" name="structure" id="structure4" value="4">
+                                <label for="structure4">4</label>
+                                <input type="radio" name="structure" id="structure5" value="5">
+                                <label for="structure5">5</label>
+                            </div>
+                        </div>
+                        
+                        <div class="trait-group">
+                            <label>I'm comfortable with public speaking</label>
+                            <div class="rating">
+                                <input type="radio" name="public_speaking" id="speaking1" value="1">
+                                <label for="speaking1">1</label>
+                                <input type="radio" name="public_speaking" id="speaking2" value="2">
+                                <label for="speaking2">2</label>
+                                <input type="radio" name="public_speaking" id="speaking3" value="3" checked>
+                                <label for="speaking3">3</label>
+                                <input type="radio" name="public_speaking" id="speaking4" value="4">
+                                <label for="speaking4">4</label>
+                                <input type="radio" name="public_speaking" id="speaking5" value="5">
+                                <label for="speaking5">5</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-prev" data-prev="2">Previous</button>
+                            <button type="button" class="btn-next" data-next="4">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Career Preferences -->
+                    <div class="form-step" data-step="4">
+                        <h3>Career Preferences</h3>
+                        <div class="form-group">
+                            <label>Preferred Work Environment</label>
+                            <select id="work_env" name="work_env" required>
+                                <option value="">Select</option>
+                                <option value="office">Traditional Office</option>
+                                <option value="remote">Remote/Flexible</option>
+                                <option value="outdoor">Outdoor/Field Work</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Desired Salary Range</label>
+                            <select id="salary" name="salary" required>
+                                <option value="">Select</option>
+                                <option value="30-50">$30,000 - $50,000</option>
+                                <option value="50-80">$50,000 - $80,000</option>
+                                <option value="80-120">$80,000 - $120,000</option>
+                                <option value="120+">$120,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Willingness to Relocate</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="relocate" value="yes" required>
+                                    <span>Yes</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="relocate" value="no">
+                                    <span>No</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="relocate" value="maybe">
+                                    <span>Maybe</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-prev" data-prev="3">Previous</button>
+                            <button type="submit" class="btn-submit">Get Recommendations</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results" class="results-section hidden">
+                <div class="results-header">
+                    <h2>Your Career Recommendations</h2>
+                    <p>Based on your assessment, here are careers that match your profile:</p>
+                </div>
+                <div class="results-container" id="careerResults">
+                    <!-- Results will be populated here by JavaScript -->
+                </div>
+                <div class="results-actions">
+                    <button id="saveResults" class="btn-primary">
+                        <i class="fas fa-save"></i> Save My Results
+                    </button>
+                    <button id="retakeAssessment" class="btn-secondary">
+                        <i class="fas fa-redo"></i> Retake Assessment
+                    </button>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <h2>About CareerPath Pro</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>CareerPath Pro is an advanced career recommendation system that uses your skills, interests, and personality traits to suggest the most suitable career paths for you.</p>
+                        <p>Our algorithm analyzes thousands of career options and matches them with your unique profile to provide personalized recommendations.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized recommendations</li>
+                            <li><i class="fas fa-check-circle"></i> Career growth insights</li>
+                            <li><i class="fas fa-check-circle"></i> Salary and education information</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="About CareerPath Pro">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features-section">
+                <h2>Key Features</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Career Matching</h3>
+                        <p>Get matched with careers that align with your skills and personality.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Growth Potential</h3>
+                        <p>See growth trajectories and future prospects for recommended careers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Education Paths</h3>
+                        <p>Discover what education or training you need for each career.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Save Results</h3>
+                        <p>Store your assessment results and track your career exploration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <h2>Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Have questions about your career recommendations? We're here to help!</p>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@careerpathpro.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Career St, Professional City, PC 12345</span>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>CareerPath <span>Pro</span></h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CareerPath Pro. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="db.js"></script>
+</body>
+</html>
